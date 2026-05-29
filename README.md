@@ -1,6 +1,6 @@
 # API-Monitoring-Dashboard
 
-This is a small full-stack API monitoring and incident tracking dashboard built using Java, Spring Boot, Angular, Typescript, Spring Data JPA and H2.  
+This is a small full-stack API monitoring and incident tracking dashboard built using Java, Spring Boot, Angular, Typescript, Spring Data JPA and H2.
 I built this project to create an enterprise style application. The dashboard stimulates how a team could monitor API Heath, view service status, create incidents and resolve them.  
 
 ## Features 
@@ -18,7 +18,7 @@ I built this project to create an enterprise style application. The dashboard st
 Controller -> Service -> Repository -> Database 
 
 ## Run Backend
-cd backend 
+cd backend  
 ./mvnw spring-boot:run   
 
 Runs at http://localhost:8080  
