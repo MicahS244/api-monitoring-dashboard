@@ -1,9 +1,11 @@
 export interface ApiService { 
     id: number;
     name: string;
+    ownerTeam: string;
+    environment: string;
     url: string;
     status: string;
-    averageResponseTime: number; // in milliseconds
+    averageResponseTimeMs: number; // in milliseconds
     errorRate: number;
-    lastChecked: string; // ISO date string
+    lastCheckedAt: string; // ISO date string
 }

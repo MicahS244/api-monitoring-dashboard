@@ -24,7 +24,7 @@ export class ApiMonitoringService {
     return this.http.post<Incident>(`${this.apiUrl}/incidents`, incident);
   }
 
-    resolveIncident(id: number): Observable<Incident> {
-    return this.http.put<Incident>(`${this.apiUrl}/incidents/${id}`, {});
-  }
+  resolveIncident(id: number): Observable<Incident> {
+  return this.http.put<Incident>(`${this.apiUrl}/incidents/${id}/resolve`, {});
+}
 }

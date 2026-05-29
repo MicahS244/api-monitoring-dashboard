@@ -1,8 +1,19 @@
 package com.apimonitoring.backend.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
 // Class representing an incident related to an API service
+@Entity
 public class Incident {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String serviceName;
     private String title;
     private String severity;
