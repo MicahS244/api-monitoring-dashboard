@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,12 +50,12 @@ public class MonitoringController {
     }
 
     @PostMapping("/incidents")
-    public Incident createIncident(@RequestBody Incident incident) {
+    public ResponseEntity<Incident> createIncident(@RequestBody Incident incident) {
         incident.setId(incidentIdCounter++);
         incident.setStatus("Open");
         incident.setCreatedAt(LocalDateTime.now().toString());
         incidents.add(incident);
-        return incident;
+        return ResponseEntity.status(HttpStatus.CREATED).body(incident);
     }
 
     @PutMapping("/incidents/{id}/resolve")
