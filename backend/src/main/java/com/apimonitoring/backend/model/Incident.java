@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Incident {
 
+    //Generates an ID for incident 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

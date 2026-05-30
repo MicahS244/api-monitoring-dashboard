@@ -29,6 +29,8 @@ public class MonitoringService {
         this.incidenteRepository = incidenteRepository;
 
     }
+
+    //This method contains sample data for APIService and Incident
     @PostConstruct
     public void initData() { 
         if (apiServiceRepository.count() == 0) {

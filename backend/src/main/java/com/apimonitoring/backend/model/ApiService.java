@@ -8,6 +8,9 @@ import jakarta.persistence.Id;
 @Entity
 public class ApiService {
     // Class implementation
+
+
+    //Generates an ID for API service 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
