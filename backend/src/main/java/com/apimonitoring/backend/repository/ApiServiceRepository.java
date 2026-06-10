@@ -7,5 +7,5 @@ import com.apimonitoring.backend.model.ApiService;
 //This provides CRUD operations for our API Service
 @Repository
 public interface ApiServiceRepository extends JpaRepository<ApiService, Long> {
-    
+
 }

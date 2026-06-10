@@ -7,5 +7,5 @@ import com.apimonitoring.backend.model.Incident;
 //This provides CRUD operations for our Incident Service 
 @Repository
 public interface IncidentRepository extends JpaRepository<Incident, Long> {
-    
+
 }

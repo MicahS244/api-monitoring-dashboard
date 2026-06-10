@@ -9,8 +9,7 @@ import jakarta.persistence.Id;
 public class ApiService {
     // Class implementation
 
-
-    //Generates an ID for API service 
+    // Generates an ID for API service
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,12 +22,13 @@ public class ApiService {
     private double errorRate;
     private String lastCheckedAt;
 
-    public ApiService() {}
+    public ApiService() {
+    }
 
-    //Construcutor initializing all fields
+    // Construcutor initializing all fields
     public ApiService(Long id, String name, String ownerTeam, String environment,
-                      String status, int averageResponseTimeMs, double errorRate,
-                      String lastCheckedAt) {
+            String status, int averageResponseTimeMs, double errorRate,
+            String lastCheckedAt) {
         this.id = id;
         this.name = name;
         this.ownerTeam = ownerTeam;
@@ -39,22 +39,68 @@ public class ApiService {
         this.lastCheckedAt = lastCheckedAt;
     }
 
-    //Getters and Setters
-    public Long getId() { return id; }
-    public String getName() { return name; }
-    public String getOwnerTeam() { return ownerTeam; }
-    public String getEnvironment() { return environment; }
-    public String getStatus() { return status; }
-    public int getAverageResponseTimeMs() { return averageResponseTimeMs; }
-    public double getErrorRate() { return errorRate; }
-    public String getLastCheckedAt() { return lastCheckedAt; }
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
 
-    public void setId(Long id) { this.id = id; }
-    public void setName(String name) { this.name = name; }
-    public void setOwnerTeam(String ownerTeam) { this.ownerTeam = ownerTeam; }
-    public void setEnvironment(String environment) { this.environment = environment; }
-    public void setStatus(String status) { this.status = status; }
-    public void setAverageResponseTimeMs(int averageResponseTimeMs) { this.averageResponseTimeMs = averageResponseTimeMs; }
-    public void setErrorRate(double errorRate) { this.errorRate = errorRate; }
-    public void setLastCheckedAt(String lastCheckedAt) { this.lastCheckedAt = lastCheckedAt; }
+    public String getName() {
+        return name;
+    }
+
+    public String getOwnerTeam() {
+        return ownerTeam;
+    }
+
+    public String getEnvironment() {
+        return environment;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public int getAverageResponseTimeMs() {
+        return averageResponseTimeMs;
+    }
+
+    public double getErrorRate() {
+        return errorRate;
+    }
+
+    public String getLastCheckedAt() {
+        return lastCheckedAt;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOwnerTeam(String ownerTeam) {
+        this.ownerTeam = ownerTeam;
+    }
+
+    public void setEnvironment(String environment) {
+        this.environment = environment;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setAverageResponseTimeMs(int averageResponseTimeMs) {
+        this.averageResponseTimeMs = averageResponseTimeMs;
+    }
+
+    public void setErrorRate(double errorRate) {
+        this.errorRate = errorRate;
+    }
+
+    public void setLastCheckedAt(String lastCheckedAt) {
+        this.lastCheckedAt = lastCheckedAt;
+    }
 }

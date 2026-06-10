@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import {ApiMonitoringService} from './services/api-monitoring.service';
+import { Login } from './pages/login/login';
 import { ApiService } from './models/api-service.model';
 import { Incident } from './models/incident.model';
 
@@ -11,13 +12,15 @@ import { Incident } from './models/incident.model';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Login],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App implements OnInit {
+  isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';  
   services: ApiService[] = [];
   incidents: Incident[] = [];
+
 
   // Model for new incident form
   newIncident: Incident = {
@@ -31,8 +34,22 @@ export class App implements OnInit {
   constructor(private apiMonitoringService: ApiMonitoringService) {}
 
   ngOnInit(): void {
+    this.isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+
+    if (this.isLoggedIn) {
+      this.loadDashboardData();
+    }
+  }
+
+  onLoginSuccess(): void {
+    this.isLoggedIn = true;
     this.loadDashboardData();
   }
+
+    logout(): void { 
+     sessionStorage.removeItem('isLoggedIn');
+     this.isLoggedIn = false;
+   }
 
   loadDashboardData(): void {
     this.apiMonitoringService.getServices().subscribe({
@@ -110,4 +127,5 @@ export class App implements OnInit {
   getOpenIncidents(): number {
     return this.incidents.filter(incident => incident.status === 'Open').length;
   }
+
 }

@@ -16,8 +16,7 @@ import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
-
-@CrossOrigin(origins = {"http://localhost:4200", "http://127.0.0.1:4200/"})
+@CrossOrigin(origins = { "http://localhost:4200", "http://127.0.0.1:4200/" })
 @RestController
 @RequestMapping("/api")
 public class MonitoringController {
@@ -40,7 +39,7 @@ public class MonitoringController {
 
     @PostMapping("/incidents")
     public ResponseEntity<?> createIncident(@RequestBody Incident incident) {
-        if(incident.getServiceName() == null || incident.getDescription() == null || incident.getSeverity() == null) {
+        if (incident.getServiceName() == null || incident.getDescription() == null || incident.getSeverity() == null) {
             return ResponseEntity.badRequest().body("Missing required fields: serviceName, description, severity");
         }
         Incident createdIncident = monitoringService.createIncident(incident);
@@ -52,5 +51,6 @@ public class MonitoringController {
         return monitoringService.resolveIncident(id)
                 .map(resolvedIncident -> ResponseEntity.ok(resolvedIncident))
                 .orElse(ResponseEntity.notFound().build());
-            }
-        }
+    }
+
+}

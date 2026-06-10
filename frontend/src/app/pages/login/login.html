@@ -1,0 +1,30 @@
+<div class="login-page">
+  <div class="login-container">
+    <h1>API Monitoring Dashboard</h1>
+    <p>Sign in to view service health and dashboard</p>
+
+    <form (ngSubmit)="login()">
+      <label>Username </label>
+      <input
+        type="text"
+        name="username"
+        [(ngModel)]="username"
+        placeholder="Enter username"
+        required
+      />
+
+      <label>Password </label>
+      <input
+        type="text"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="Enter passowrd"
+        required
+      />
+
+      <button type="submit">Login</button>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </form>
+  </div>
+</div>

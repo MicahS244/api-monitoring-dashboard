@@ -1,150 +1,150 @@
-<div class="page">
-  <header class="header">
-    <div>
-      <h1>API Monitoring Dashboard</h1>
-      <p>Track service health, response times, error rates, and open incidents.</p>
-    </div>
-  </header>
+<app-login *ngIf="!isLoggedIn" (loginSuccess)="onLoginSuccess()"></app-login>
+<div *ngIf="isLoggedIn">
+  <div class="page">
+    <header class="header">
+      <div>
+        <h1>API Monitoring Dashboard</h1>
+        <p>Track service health, response times, error rates, and open incidents.</p>
+      </div>
+    </header>
 
-  <section class="cards">
-    <div class="card">
-      <p>Total APIs</p>
-      <h2>{{ getTotalServices() }}</h2>
-    </div>
+    <section class="cards">
+      <div class="card">
+        <p>Total APIs</p>
+        <h2>{{ getTotalServices() }}</h2>
+      </div>
 
-    <div class="card">
-      <p>Healthy</p>
-      <h2>{{ getHealthyServices() }}</h2>
-    </div>
+      <div class="card">
+        <p>Healthy</p>
+        <h2>{{ getHealthyServices() }}</h2>
+      </div>
 
-    <div class="card">
-      <p>Degraded</p>
-      <h2>{{ getDegradedServices() }}</h2>
-    </div>
+      <div class="card">
+        <p>Degraded</p>
+        <h2>{{ getDegradedServices() }}</h2>
+      </div>
 
-    <div class="card">
-      <p>Down</p>
-      <h2>{{ getDownServices() }}</h2>
-    </div>
+      <div class="card">
+        <p>Down</p>
+        <h2>{{ getDownServices() }}</h2>
+      </div>
 
-    <div class="card">
-      <p>Open Incidents</p>
-      <h2>{{ getOpenIncidents() }}</h2>
-    </div>
-  </section>
+      <div class="card">
+        <p>Open Incidents</p>
+        <h2>{{ getOpenIncidents() }}</h2>
+      </div>
+    </section>
 
-  <section class="panel">
-    <h2>Service Health</h2>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Service</th>
-          <th>Team</th>
-          <th>Environment</th>
-          <th>Status</th>
-          <th>Avg Response</th>
-          <th>Error Rate</th>
-          <th>Last Checked</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr *ngFor="let service of services">
-          <td>{{ service.name }}</td>
-          <td>{{ service.ownerTeam }}</td>
-          <td>{{ service.environment }}</td>
-          <td>
-            <span class="badge" [ngClass]="service.status.toLowerCase()">
-              {{ service.status }}
-            </span>
-          </td>
-          <td>{{ service.averageResponseTimeMs }} ms</td>
-          <td>{{ service.errorRate }}%</td>
-          <td>{{ service.lastCheckedAt }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section class="grid">
-    <div class="panel">
-      <h2>Incidents</h2>
+    <section class="panel">
+      <h2>Service Health</h2>
 
       <table>
         <thead>
           <tr>
             <th>Service</th>
-            <th>Title</th>
-            <th>Severity</th>
+            <th>Team</th>
+            <th>Environment</th>
             <th>Status</th>
-            <th>Created</th>
-            <th>Action</th>
+            <th>Avg Response</th>
+            <th>Error Rate</th>
+            <th>Last Checked</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr *ngFor="let incident of incidents">
-            <td>{{ incident.serviceName }}</td>
-            <td>{{ incident.title }}</td>
+          <tr *ngFor="let service of services">
+            <td>{{ service.name }}</td>
+            <td>{{ service.ownerTeam }}</td>
+            <td>{{ service.environment }}</td>
             <td>
-              <span class="badge severity">
-                {{ incident.severity }}
+              <span class="badge" [ngClass]="service.status.toLowerCase()">
+                {{ service.status }}
               </span>
             </td>
-            <td>{{ incident.status }}</td>
-            <td>{{ incident.createdAt }}</td>
-            <td>
-              <button
-                *ngIf="incident.status === 'Open'"
-                (click)="resolveIncident(incident.id)"
-              >
-                Resolve
-              </button>
-              <span *ngIf="incident.status === 'Resolved'">Resolved</span>
-            </td>
+            <td>{{ service.averageResponseTimeMs }} ms</td>
+            <td>{{ service.errorRate }}%</td>
+            <td>{{ service.lastCheckedAt }}</td>
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
 
-    <div class="panel">
-      <h2>Create Incident</h2>
+    <section class="grid">
+      <div class="panel">
+        <h2>Incidents</h2>
 
-      <form (ngSubmit)="createIncident()">
-        <label>Service Name</label>
-        <select [(ngModel)]="newIncident.serviceName" name="serviceName">
-          <option value="">Select service</option>
-          <option *ngFor="let service of services" [value]="service.name">
-            {{ service.name }}
-          </option>
-        </select>
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Title</th>
+              <th>Severity</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Action</th>
+            </tr>
+          </thead>
 
-        <label>Title</label>
-        <input
-          type="text"
-          name="title"
-          [(ngModel)]="newIncident.title"
-          placeholder="Example: Elevated error rate"
-        />
+          <tbody>
+            <tr *ngFor="let incident of incidents">
+              <td>{{ incident.serviceName }}</td>
+              <td>{{ incident.title }}</td>
+              <td>
+                <span class="badge severity">
+                  {{ incident.severity }}
+                </span>
+              </td>
+              <td>{{ incident.status }}</td>
+              <td>{{ incident.createdAt }}</td>
+              <td>
+                <button *ngIf="incident.status === 'Open'" (click)="resolveIncident(incident.id)">
+                  Resolve
+                </button>
+                <span *ngIf="incident.status === 'Resolved'">Resolved</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <label>Severity</label>
-        <select [(ngModel)]="newIncident.severity" name="severity">
-          <option>Low</option>
-          <option>Medium</option>
-          <option>High</option>
-          <option>Critical</option>
-        </select>
+      <div class="panel">
+        <h2>Create Incident</h2>
 
-        <label>Description</label>
-        <textarea
-          name="description"
-          [(ngModel)]="newIncident.description"
-          placeholder="Briefly describe the issue"
-        ></textarea>
+        <form (ngSubmit)="createIncident()">
+          <label>Service Name</label>
+          <select [(ngModel)]="newIncident.serviceName" name="serviceName">
+            <option value="">Select service</option>
+            <option *ngFor="let service of services" [value]="service.name">
+              {{ service.name }}
+            </option>
+          </select>
 
-        <button type="submit">Create Incident</button>
-      </form>
-    </div>
-  </section>
+          <label>Title</label>
+          <input
+            type="text"
+            name="title"
+            [(ngModel)]="newIncident.title"
+            placeholder="Example: Elevated error rate"
+          />
+
+          <label>Severity</label>
+          <select [(ngModel)]="newIncident.severity" name="severity">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+            <option>Critical</option>
+          </select>
+
+          <label>Description</label>
+          <textarea
+            name="description"
+            [(ngModel)]="newIncident.description"
+            placeholder="Briefly describe the issue"
+          ></textarea>
+
+          <button type="submit">Create Incident</button>
+        </form>
+      </div>
+    </section>
+  </div>
 </div>
