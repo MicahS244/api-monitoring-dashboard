@@ -38,7 +38,7 @@ Runs at http://localhost:4200
 
 ## Future Improvements
 -Add PostgreSQL or Supabase  
--Add authenticaiton (In Progress)
+-Add authenticaiton (In Progress) 
 -Add charts for API metrics  
 -Add search and filtering  
 -Add test  
