@@ -32,13 +32,13 @@ Password:
 ## Run Frontend 
 cd frontend   
 npm install   
-npm exec ng server   
+npm exec ng server or npm start
 
 Runs at http://localhost:4200  
 
 ## Future Improvements
 -Add PostgreSQL or Supabase  
--Add authenticaiton (OAuth 2.0)  
+-Add authenticaiton (In Progress)
 -Add charts for API metrics  
 -Add search and filtering  
 -Add test  
